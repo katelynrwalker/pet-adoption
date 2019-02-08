@@ -1,0 +1,272 @@
+Australian Cattle Dog,HERDING
+Australian Shepherd,HERDING
+Bearded Collie,HERDING
+Beauceron,HERDING
+Belgian Malinois,HERDING
+Belgian Sheepdog,HERDING
+Belgian Tervuren,HERDING
+Bergamasco,HERDING
+Berger Picard,HERDING
+Border Collie,HERDING
+Bouvier des Flandres,HERDING
+Briard,HERDING
+Canaan Dog,HERDING
+Cardigan Welsh Corgi,HERDING
+Collie,HERDING
+Entlebucher Moutain Dog,HERDING
+Finnish Lapphund,HERDING
+German Shepherd Dog,HERDING
+Icelandic Sheepdog,HERDING
+Miniature American Shepherd,HERDING
+Norwegian Buhund,HERDING
+Old English Sheepdog,HERDING
+Pembroke Welsh Corgi,HERDING
+Polish Lowland Sheepdog,HERDING
+Puli,HERDING
+Pumi,HERDING
+Pyrenean Shepherd,HERDING
+Shetland Sheepdog,HERDING
+Spanish Water Dog,HERDING
+Swedish Vallhund,HERDING
+Afghan Hound,HOUND
+American English Coonhound,HOUND
+American Foxhound,HOUND
+Azawakh,HOUND
+Basenji,HOUND
+Basset Hound,HOUND
+Beagle,HOUND
+Black and Tan Coonhound,HOUND
+Bloodhound,HOUND
+Bluetick Coonhound,HOUND
+Borzoi,HOUND
+Cirneco Dell’Etna,HOUND
+Dachshund,HOUND
+English Foxhound,HOUND
+Grand Basset Griffon Vendeen,HOUND
+Greyhound,HOUND
+Harrier,HOUND
+Ibizan Hound,HOUND
+Irish Wolfhound,HOUND
+Norwegian Elkhound,HOUND
+Otterhound,HOUND
+Petit Basset Griffon Vendeen,HOUND
+Pharaoh Hound,HOUND
+Plott,HOUND
+Portuguese Podengo Pequeno,HOUND
+Redbone Coonhound,HOUND
+Rhodesian Ridgeback,HOUND
+Saluki,HOUND
+Scottish Deerhound,HOUND
+Sloughi,HOUND
+Treeing Walker Coonhound,HOUND
+Whippet,HOUND
+Affenpinscher,TOY
+Brussels Griffon,TOY
+Cavalier King Charles Spaniel,TOY
+Chihuahua,TOY
+Chinese Crested,TOY
+English Toy Spaniel,TOY
+Havanese,TOY
+Italian Greyhound,TOY
+Japanese Chin,TOY
+Maltese,TOY
+Manchester Terrier,TOY
+Miniature Pinscher,TOY
+Papillon,TOY
+Pekingese,TOY
+Pomeranian,TOY
+Poodle (Toy),TOY
+Pug,TOY
+Shih Tzu,TOY
+Silky Terrier,TOY
+Toy Fox Terrier,TOY
+Yorkshire Terrier,TOY
+American Eskimo Dog,NON-SPORTING
+Bichon Frise,NON-SPORTING
+Boston Terrier,NON-SPORTING
+Bulldog,NON-SPORTING
+Chinese Shar-Pei,NON-SPORTING
+Chow Chow,NON-SPORTING
+Coton De Tulear,NON-SPORTING
+Dalmatian,NON-SPORTING
+Finish Spitz,NON-SPORTING
+French Bulldog,NON-SPORTING
+Keeshond,NON-SPORTING
+Lhasa Apso,NON-SPORTING
+Lowchen,NON-SPORTING
+Norwegian Lundhund,NON-SPORTING
+Poodle,NON-SPORTING
+Schipperke,NON-SPORTING
+Shiba Inu,NON-SPORTING
+Tibetan Spaniel,NON-SPORTING
+Tibetan Terrier,NON-SPORTING
+Xoloitzcuintli,NON-SPORTING
+American Water Spaniel,SPORTING
+Boykin Spaniel,SPORTING
+Brittany,SPORTING
+Chesapeake Bay Retriever,SPORTING
+Clumber Spaniel,SPORTING
+Cocker Spaniel,SPORTING
+Curly-Coated Retriever,SPORTING
+English Cocker Spaniel,SPORTING
+English Setter,SPORTING
+English Springer Spaniel,SPORTING
+Field Spaniel,SPORTING
+Flat-Coated Retriever,SPORTING
+German Shorthaired Pointer,SPORTING
+German Wirehaired Pointer,SPORTING
+Golden Retriever,SPORTING
+Gordon Setter,SPORTING
+Irish Red and White Setter,SPORTING
+Irish Setter,SPORTING
+Irish Water Spaniel,SPORTING
+Labrador Retriever,SPORTING
+Lagotto Romagnolo,SPORTING
+Nederlandse Kooikerhondje,SPORTING
+Nova Scotia Duck Tolling Retriever,SPORTING
+Pointer,SPORTING
+Spinone Italiano,SPORTING
+Sussex Spaniel,SPORTING
+Vizsla,SPORTING
+Weimaraner,SPORTING
+Welsh Springer Spaniel,SPORTING
+Wirehaired Pointing Griffon,SPORTING
+Wirehaired Vizsla,SPORTING
+Airedale Terrier,TERRIER
+American Hairless Terrier,TERRIER
+American Staffordshire Terrier,TERRIER
+Australian Terrier,TERRIER
+Bedlington Terrier,TERRIER
+Border Terrier,TERRIER
+Bull Terrier,TERRIER
+Cairn Terrier,TERRIER
+Cesky Terrier,TERRIER
+Dandie Dinmont Terrier,TERRIER
+Glen of Imaal Terrier,TERRIER
+Irish Terrier,TERRIER
+Kerry Blue Terrier,TERRIER
+Lakeland Terrier,TERRIER
+Manchester Terrier,TERRIER
+Miniature Bull Terrier,TERRIER
+Miniature Schnauzer,TERRIER
+Norfolk Terrier,TERRIER
+Norwich Terrier,TERRIER
+Parson Russell Terrier,TERRIER
+Rat Terrier,TERRIER
+Russell Terrier,TERRIER
+Scottish Terrier,TERRIER
+Sealyham Terrier,TERRIER
+Skye Terrier,TERRIER
+Smooth Fox Terrier,TERRIER
+Soft Coated Wheaten Terrier,TERRIER
+Staffordshire Bull Terrier,TERRIER
+Welsh Terrier,TERRIER
+West Highland White Terrier,TERRIER
+Wire Fox Terrier,TERRIER
+Akita,WORKING
+Alaskan Malamute,WORKING
+Anatolian Shepherd Dog,WORKING
+Bernese Mountain Dog,WORKING
+Black Russian Terrier,WORKING
+Boerboel,WORKING
+Boxer,WORKING
+Bullmastiff,WORKING
+Cane Corso,WORKING
+Chinook,WORKING
+Doberman Pinscher,WORKING
+Dogue de Bordeaux,WORKING
+German Pinscher,WORKING
+Giant Schnauzer,WORKING
+Great Dane,WORKING
+Great Pyrenees,WORKING
+Greater Swiss Mountain Dog,WORKING
+Komondor,WORKING
+Kuvasz,WORKING
+Leonberger,WORKING
+Mastiff,WORKING
+Neapolitan Mastiff,WORKING
+Newfoundland,WORKING
+Portuguese Water Dog,WORKING
+Rottweiler,WORKING
+Samoyed,WORKING
+Siberian Husky,WORKING
+Standard Schnauzer,WORKING
+Tibetan Mastiff,WORKING
+St. Bernard,WORKING
+Barbet,MISC
+Belgian Laekenois,MISC
+Dogo Argentino,MISC
+Dutch Shepherd,MISC
+Lancashire Heeler,MISC
+Mudi,MISC
+Norrbottenspets,MISC
+Peruvian Inca Orchid,MISC
+Portuguese Podengo,MISC
+Russian Toy,MISC
+American Leopard Hound,FSS
+Appenzeller Sennenhund,FSS
+Australian Kelpie,FSS
+Australian Stumpy Tail Cattle Dog,FSS
+Basset Fauve de Bretagne,FSS
+Bavarian Mountain Scent Hound,FSS
+Biewer Terrier,FSS
+Bolognese,FSS
+Bracco Italiano,FSS
+Braque de Bourbonnais,FSS
+Braque Francais Pyrenean,FSS
+Broholmer,FSS
+Carolina Dog,FSS
+Catahoula Leopard Dog,FSS
+Caucasian Shepherd Dog,FSS
+Central Asian Shepherd Dog,FSS
+Croatian Sheepdog,FSS
+Czechoslovakian Vlack,FSS
+Danish-Swedish Farmdog,FSS
+Deutscher Wachtelhund,FSS
+Drentsche Patrijshond,FSS
+Drever,FSS
+Estrela Mountain Dog,FSS
+Eurasier,FSS
+French Spaniel,FSS
+German Longhaired Pointer,FSS
+German Spitz,FSS
+Hamiltonstovare,FSS
+Hanoverian Scenthound,FSS
+Hokkaido,FSS
+Hovawart,FSS
+Jagdterrier,FSS
+Jindo,FSS
+Kai Ken,FSS
+Karelian Bear Dog,FSS
+Kishu Ken,FSS
+Kromfohrlander,FSS
+Lapponian Herder,FSS
+Mountain Cur,FSS
+Perro de Presa Canario,FSS
+Porcelaine,FSS
+Portuguese Pointer,FSS
+Portuguese Sheepdog,FSS
+Pudelpointer,FSS
+Pyrenean Mastiff,FSS
+Rafeiro de Alentejo,FSS
+Romanian Mioritic Shepherd Dog,FSS
+Russian Tsvetnaya Bolonka,FSS
+Schapendoes,FSS
+Segugio Italiano,FSS
+Shikoku,FSS
+Slovakian Wirehaired Pointer,FSS
+Slovensky Cuvac,FSS
+Slovensky Kopov,FSS
+Small Musterlander Pointer,FSS
+Spanish Mastiff,FSS
+Stabyhoun,FSS
+Swedish Lapphund,FSS
+Taiwan Dog,FSS
+Teddy Roosevelt Terrier,FSS
+Thai Ridgeback,FSS
+Tornjak,FSS
+Tosa,FSS
+Transylvanian Hound,FSS
+Treeing Tennessee Brindle,FSS
+Working Kelpie,FSS
+Yakutian Laika,FSS
