@@ -3,6 +3,12 @@ import json
 
 
 def extract_sentiment(petID):
+    '''
+    Input:
+        Target pet ID (JSON filename) to extract sentiments from.
+    Output:
+        Array of sentiments extracted from the JSONs.
+    '''
     # Make sure this is run from the root
     try:
         with open('data_minus_images/train_sentiment/'+petID+'.json') as target:
@@ -14,6 +20,12 @@ def extract_sentiment(petID):
     return [magnitude, score, language]
 
 def load_sentiments(pet_df):
+    '''
+    Input:
+        Pet feature dataframe with unique PetIDs in a column.
+    Output:
+        Copy of the dataframe with sentiment metrics added as feature columns.
+    '''
     output = pet_df.set_index('PetID')
     output['magnitude'] = 0
     output['score'] = 0
