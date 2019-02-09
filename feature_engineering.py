@@ -34,3 +34,48 @@ def load_sentiments(pet_df):
         sentiments = extract_sentiment(pet)
         output.loc[pet,['magnitude','score','language']] = sentiments
     return output.reset_index()
+
+def group_encoding(row):
+    try:
+        if row['Type']==2:
+            row['BreedGroup']='CAT'
+            row['BreedGroupID']=-1
+        elif row['Breed1']==307 or row['Breed2']!=0:
+            row['BreedGroup']='MIXED'
+            row['BreedGroupID']=0
+        else:
+            group = group_dict[row['BreedName']]
+            row['BreedGroup'] = group
+            row['BreedGroupID'] = group_ID.loc[group].BreedID
+    except:
+        pass
+    return row
+
+def add_breed_groups(pet_df):
+    breeds = pd.read_csv('data_minus_images/breed_labels.csv')
+    encoding = pd.read_csv('breed_group_encoding.csv', header=None, encoding = "ISO-8859-1")
+    encoding.set_index(0,inplace=True)
+    group_dict = encoding.to_dict()[1]
+    
+    # Add breedname for group processing
+    add_breeds = pd.merge(pet_df, breeds.drop(columns=['Type']),left_on='Breed1',right_on='BreedID').drop(columns=['BreedID'])
+    # Preload with empty columns
+    add_breeds['BreedGroup'] = 'MISC'
+    add_breeds['BreedGroupID'] = 8
+    
+    group_ID=pd.DataFrame.from_dict({'MIXED':0,
+                                  'HERDING':1,
+                                  'HOUND':2,
+                                  'TOY':3,
+                                  'NON-SPORTING':4,
+                                  'SPORTING':5,
+                                  'TERRIER':6,
+                                  'WORKING':7,
+                                  'MISC':8,
+                                  'FSS':9},orient='index',columns=['BreedID'])
+    
+    add_groups = add_breeds.apply(group_encoding,axis=1)
+    # Add purebred flag
+    add_groups['purebred']=~((add_groups['BreedGroup']=='MIXED')|(add_groups['Breed2']!=0))*1
+    
+    return add_groups
