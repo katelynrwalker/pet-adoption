@@ -79,3 +79,29 @@ def add_breed_groups(pet_df):
     add_groups['purebred']=~((add_groups['BreedGroup']=='MIXED')|(add_groups['Breed2']!=0))*1
     
     return add_groups
+
+
+def add_description_info(df):
+    df['desc_len'] = df['Description'].apply(lambda x: len(str(x)))
+    df['start_cap'] = df['Description'].apply(lambda x: 1*(str(x)[0]!=str(x)[0].lower()))
+    return df
+
+
+def add_color_count(df):
+    df['num_colors']=1*(df['Color1']>0)+1*(df['Color2']>0)+1*(df['Color3']>0)
+    return df
+
+def add_name_flag(df):
+    df['has_name']=~pd.isnull(df['Name'])*1
+    return df
+
+
+
+def add_everything(df):
+    df = load_sentiments(df)
+    df = add_breed_groups(df)
+    df = add_description_info(df)
+    df = add_color_count(df)
+    df = add_name_flag(df)
+    
+    return df
