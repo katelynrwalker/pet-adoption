@@ -35,7 +35,7 @@ def load_sentiments(pet_df):
         output.loc[pet,['magnitude','score','language']] = sentiments
     return output.reset_index()
 
-def group_encoding(row):
+def group_encoding(row, group_dict, group_ID):
     try:
         if row['Type']==2:
             row['BreedGroup']='CAT'
@@ -74,7 +74,7 @@ def add_breed_groups(pet_df):
                                   'MISC':8,
                                   'FSS':9},orient='index',columns=['BreedID'])
     
-    add_groups = add_breeds.apply(group_encoding,axis=1)
+    add_groups = add_breeds.apply(group_encoding,axis=1, args=[group_dict, group_ID])
     # Add purebred flag
     add_groups['purebred']=~((add_groups['BreedGroup']=='MIXED')|(add_groups['Breed2']!=0))*1
     
