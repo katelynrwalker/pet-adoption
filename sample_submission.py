@@ -6,6 +6,54 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import GradientBoostingClassifier, GradientBoostingRegressor
 from sklearn.preprocessing import OneHotEncoder, StandardScaler, MinMaxScaler
+from sklearn.pipeline import Pipeline
+from sklearn.base import BaseEstimator, TransformerMixin
+
+
+class OneHotTransformer(BaseEstimator, TransformerMixin):
+    """
+    One-hot encode features
+    """
+    def __init__(self, cat_features=None):
+        self.cat_features = cat_features
+
+    def fit(self, X, y=None):
+        """
+        Store the features resulting from training features
+        Accepts DataFrame
+        Saves state and returns self
+        """
+        df = dummify(
+            X,
+            self.cat_features,
+        )
+        self.train_columns = df.columns
+
+        return self
+
+    def transform(self, X):
+        """
+        One-hot encode and ensure all features captured in training are present as well.
+        Accepts DataFrame
+        Returns DataFrame with addition features
+        """
+        df = X.copy()
+        df = dummify(
+            df,
+            self.cat_features,
+        )
+
+        # Remove untrained columns
+        for col in self.train_columns:
+            if col not in df.columns:
+                df[col] = 0
+
+        # Add trained on columns
+        for col in df.columns:
+            if col not in self.train_columns:
+                df.drop(col, axis=1, inplace=True)
+
+        return df[self.train_columns]
 
 
 def extract_sentiment(petID, filepath):
@@ -113,7 +161,6 @@ def add_everything(df, sentiment_filepath, breed_filepath):
 
 def dummify(X, cat_features):
     for feat in cat_features:
-#        print(feat)
         dummies = pd.get_dummies(X[feat], prefix=feat)
         dummies.drop(dummies.columns[-1], axis=1, inplace=True)
         X = X.drop(feat, axis=1).merge(dummies, left_index=True, right_index=True)
@@ -124,21 +171,36 @@ cat_features = ['Type', 'Breed1', 'Breed2', 'Gender', 'Color1', 'Color2',
        'Color3', 'MaturitySize', 'FurLength', 'Vaccinated', 'Dewormed',
        'Sterilized', 'Health', 'State', 'language', 'BreedGroup']
 
+
+
+print("Reading training data")
+data = pd.read_csv('data_minus_images/train.csv')
+print("Feat eng on train data")
+pet_df = add_everything(data, 'data_minus_images/train_sentiment/', 'data_minus_images/breed_labels.csv')
+X = pet_df.drop(columns=['Name','RescuerID','Description','PetID','AdoptionSpeed', 'BreedName', 'BreedGroupID'])
+dummifier = OneHotTransformer(cat_features=cat_features)
+dummifier.fit(X)
+X_train = dummifier.transform(X)
+y_train = pet_df['AdoptionSpeed'].astype('str')
+
+
+print("Reading test data")
 data_test = pd.read_csv('data_minus_images/test/test.csv')
+print("Feat eng on test data")
 pet_df_test = add_everything(data_test, 'data_minus_images/test_sentiment/', 'data_minus_images/breed_labels.csv')
 X_test = pet_df_test.drop(columns=['Name','RescuerID','Description','PetID', 'BreedName', 'BreedGroupID'])
-X_test = dummify(X_test, cat_features)
+X_test = dummifier.transform(X_test)
 
-data = pd.read_csv('data_minus_images/train.csv')
-pet_df = add_everything(data, 'data_minus_images/train_sentiment/', 'data_minus_images/breed_labels.csv')
-
-X = pet_df.drop(columns=['Name','RescuerID','Description','PetID','AdoptionSpeed', 'BreedName', 'BreedGroupID'])
-y = pet_df['AdoptionSpeed'].astype('str')
-
-X = dummify(X, cat_features)
-
-
+print("Fitting model")
 gbc = GradientBoostingClassifier()
-gbc.fit(X, y)
+gbc.fit(X_train, y_train)
 y_predict = gbc.predict(X_test)
-y_predict.to_csv('sample_submission.csv', index=False)
+
+print("Writing submission")
+print(y_predict.shape)
+submission_df = pd.DataFrame()
+submission_df['PetID'] = data_test['PetID']
+submission_df['AdoptionSpeed'] = y_predict
+print(submission_df.shape)
+print(submission_df.head())
+submission_df.to_csv('sample_submission.csv', index=False)
