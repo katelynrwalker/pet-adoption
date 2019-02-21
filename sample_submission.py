@@ -107,6 +107,7 @@ def group_encoding(row, group_dict, group_ID):
 
 def add_breed_groups(pet_df, filepath):
     breeds = pd.read_csv(filepath)
+    # encoding = pd.read_csv('..input/breed_group_encoding/breed_group_encoding.csv', header=None, encoding = "ISO-8859-1")
     encoding = pd.read_csv('breed_group_encoding.csv', header=None, encoding = "ISO-8859-1")
     encoding.set_index(0,inplace=True)
     group_dict = encoding.to_dict()[1]
@@ -170,37 +171,55 @@ def dummify(X, cat_features):
 cat_features = ['Type', 'Breed1', 'Breed2', 'Gender', 'Color1', 'Color2',
        'Color3', 'MaturitySize', 'FurLength', 'Vaccinated', 'Dewormed',
        'Sterilized', 'Health', 'State', 'language', 'BreedGroup']
+drop_features = ['Name','RescuerID','Description','PetID', 'BreedName', 'BreedGroupID']
+label = 'AdoptionSpeed'
 
+root = 'data_minus_images/'
+train_root = root
+test_root = root + 'test/'
 
+# # if kaggle kernel:
+# root = '../input/petfinder-adoption-prediction/'
+# train_root = root + 'train/'
+# test_root = root + 'test/'
 
 print("Reading training data")
-data = pd.read_csv('data_minus_images/train.csv')
+data = pd.read_csv(train_root+'train.csv')
 print("Feat eng on train data")
-pet_df = add_everything(data, 'data_minus_images/train_sentiment/', 'data_minus_images/breed_labels.csv')
-X = pet_df.drop(columns=['Name','RescuerID','Description','PetID','AdoptionSpeed', 'BreedName', 'BreedGroupID'])
+pet_df = add_everything(data, root+'train_sentiment/', root+'breed_labels.csv')
+X = pet_df.drop(columns=drop_features+[label])
 dummifier = OneHotTransformer(cat_features=cat_features)
 dummifier.fit(X)
 X_train = dummifier.transform(X)
-y_train = pet_df['AdoptionSpeed'].astype('str')
-
+y_train = pet_df[label].astype('str')
 
 print("Reading test data")
-data_test = pd.read_csv('data_minus_images/test/test.csv')
+data_test = pd.read_csv(test_root+'test.csv')
 print("Feat eng on test data")
-pet_df_test = add_everything(data_test, 'data_minus_images/test_sentiment/', 'data_minus_images/breed_labels.csv')
-X_test = pet_df_test.drop(columns=['Name','RescuerID','Description','PetID', 'BreedName', 'BreedGroupID'])
+pet_df_test = add_everything(data_test, root+'test_sentiment/', root+'breed_labels.csv')
+X_test = pet_df_test.drop(columns=drop_features)
 X_test = dummifier.transform(X_test)
+
+# ### Try a train test split instead of using given test data
+# X_train, X_test, y_train, y_test = train_test_split(X, pet_df['AdoptionSpeed'])
+# dummifier = OneHotTransformer(cat_features=cat_features)
+# dummifier.fit(X_train)
+# X_train = dummifier.transform(X_train)
+# X_test = dummifier.transform(X_test)
 
 print("Fitting model")
 gbc = GradientBoostingClassifier()
 gbc.fit(X_train, y_train)
 y_predict = gbc.predict(X_test)
 
+# from quadratic_weighted_kappa import *
+# print(quadratic_weighted_kappa(y_test,y_predict))
+
 print("Writing submission")
 print(y_predict.shape)
 submission_df = pd.DataFrame()
 submission_df['PetID'] = data_test['PetID']
-submission_df['AdoptionSpeed'] = y_predict
+submission_df[label] = y_predict
 print(submission_df.shape)
 print(submission_df.head())
-submission_df.to_csv('sample_submission.csv', index=False)
+submission_df.to_csv('submission.csv', index=False)
