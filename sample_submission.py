@@ -9,6 +9,10 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler, MinMaxScaler
 from sklearn.pipeline import Pipeline
 from sklearn.base import BaseEstimator, TransformerMixin
 
+# TODO:
+# Fix breed group index shuffling bug
+# Add sentiment interaction effect
+# 
 
 class OneHotTransformer(BaseEstimator, TransformerMixin):
     """
